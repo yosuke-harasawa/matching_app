@@ -1,0 +1,29 @@
+<header class="navbar">
+  <div class="container">
+    <%= link_to "meet", root_path, id: "logo" %>
+    <nav>
+      <ul>
+        <li>
+          <%= link_to '#', method: :get do %>
+            <i class="fas fa-search fa-3x"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#', method: :get do %>
+            <i class="far fa-thumbs-up fa-3x"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#', method: :get do %>
+            <i class="far fa-comments fa-3x"></i>
+          <% end %>  
+        </li>
+        <li>
+          <%= link_to '#', method: :get do %>
+            <i class="far fa-user fa-3x"></i>
+          <% end %>  
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

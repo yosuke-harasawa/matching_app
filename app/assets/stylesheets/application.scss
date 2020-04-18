@@ -1,0 +1,51 @@
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+
+/* mixins, variables, etc */
+
+
+/* universal */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.2rem;
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+
+/*  header */
+.navbar {
+  border-bottom: 1px solid #e3e3e3;
+}
+
+header li {
+  display: inline-block;
+}
+
+
+/* debug */
+.debug_dump {
+  background-color: #eaeaea;
+  border: 1px solid #e3e3e3;
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+}
+
