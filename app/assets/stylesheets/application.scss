@@ -3,10 +3,10 @@
 @import "font-awesome";
 
 
-/* mixins, variables, etc */
+// mixins, variables, etc
 
 
-/* universal */
+// universal
 html {
   font-size: 62.5%;
 }
@@ -24,22 +24,19 @@ a:hover {
   text-decoration: none;
 }
 
-li {
-  list-style-type: none;
-}
 
-
-/*  header */
+// header
 .navbar {
   border-bottom: 1px solid #e3e3e3;
 }
 
 header li {
   display: inline-block;
+  list-style-type: none;
 }
 
 
-/* debug */
+// debug
 .debug_dump {
   background-color: #eaeaea;
   border: 1px solid #e3e3e3;
@@ -49,3 +46,11 @@ header li {
   margin-top: 45px;
 }
 
+// forms
+#error_explanation {
+  color: red;
+}
+
+.field_with_errors .form-control{
+  border-color: red;
+}
