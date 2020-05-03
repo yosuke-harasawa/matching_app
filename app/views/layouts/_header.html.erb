@@ -8,21 +8,23 @@
             <i class="fas fa-search fa-3x"></i>
           <% end %>
         </li>
-        <li>
-          <%= link_to '#', method: :get do %>
-            <i class="far fa-thumbs-up fa-3x"></i>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to '#', method: :get do %>
-            <i class="far fa-comments fa-3x"></i>
-          <% end %>  
-        </li>
-        <li>
-          <%= link_to '#', method: :get do %>
-            <i class="far fa-user fa-3x"></i>
-          <% end %>  
-        </li>
+        <% if logged_in? %>
+          <li>
+            <%= link_to '#', method: :get do %>
+              <i class="like-link far fa-thumbs-up fa-3x"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to '#', method: :get do %>
+              <i class="chat-link far fa-comments fa-3x"></i>
+            <% end %>  
+          </li>
+          <li>
+            <%= link_to '#', method: :get do %>
+              <i class="profile-link far fa-user fa-3x"></i>
+            <% end %>  
+          </li>
+        <% end %>
       </ul>
     </nav>
   </div>

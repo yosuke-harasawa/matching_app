@@ -241,10 +241,10 @@
     "true-myth" "2.2.3"
     valid-url "^1.0.9"
 
-"@heroku-cli/plugin-certs-v5@^7.39.2":
-  version "7.39.2"
-  resolved "https://registry.yarnpkg.com/@heroku-cli/plugin-certs-v5/-/plugin-certs-v5-7.39.2.tgz#fb0768d27fd8cd736e04deda28f61cf8ef4e2d18"
-  integrity sha512-/ubmVOpu7FpwxDPrNYiDQSzG7kT7p/9KJbDDU0kAE1FKQYHZjnQG/1u+FWgiGTbcsVROPN5jLa/AhS7AZGr0gA==
+"@heroku-cli/plugin-certs-v5@^7.39.4":
+  version "7.39.4"
+  resolved "https://registry.yarnpkg.com/@heroku-cli/plugin-certs-v5/-/plugin-certs-v5-7.39.4.tgz#3f664bce5cacc92207eee4176496872dc312dc5d"
+  integrity sha512-rNejNajY7E4I8A8TIfpDe07JjevNkdEz32PxBPWdDPOsyMdC3hg/kJth8LJk2lzEbVHaYHu8QkRMu/jyQXWKZQ==
   dependencies:
     co "4.6.0"
     co-wait "0.0.0"
@@ -484,10 +484,10 @@
     date-fns "^1.29.0"
     http-call "^5.2.3"
 
-"@heroku-cli/plugin-webhooks@^7.39.2":
-  version "7.39.2"
-  resolved "https://registry.yarnpkg.com/@heroku-cli/plugin-webhooks/-/plugin-webhooks-7.39.2.tgz#b9575560c52c1b1ecc46ee95f56cc779da7c8323"
-  integrity sha512-5ZK1CNYGAsXgmtjlsmVM/JRh4jxM6qrGW0YyJmmNVGJAlTepe6CcC3kAdErrQDXMs+RL7AMoE3SSM7dJut+q/Q==
+"@heroku-cli/plugin-webhooks@^7.39.4":
+  version "7.39.4"
+  resolved "https://registry.yarnpkg.com/@heroku-cli/plugin-webhooks/-/plugin-webhooks-7.39.4.tgz#63986b6589fd5fdb367e25ba67233f081ec70542"
+  integrity sha512-kxFtW/pxrXSzLwISm+SZV2fXvMvIPSmYJLcyt4Rk8Y57nwBCdoouWuDqD/2bilkThaBMWMxHq2YA9A9yeSSJdw==
   dependencies:
     "@heroku-cli/color" "^1.1.14"
     "@heroku-cli/command" "^8.3.0"

@@ -10,24 +10,30 @@ RSpec.describe "Users", type: :system do
         fill_in "email",                 with: "user@example.com"
         fill_in "password",              with: "Password1"
         fill_in "password confirmation", with: "Password1"
-        click_button "Sign up"
         
+        expect {
+          click_on "Sign up"
+        }.to_not change(User, :count)
         expect(current_path).to eq signup_path
         expect(page).to have_selector "#error_explanation"
       end
     end  
     
     context "when inputted info is valid" do
-      it "is successful" do
+      it "is successful and also login" do
         visit signup_path
         fill_in "user name",             with: "user"
         fill_in "email",                 with: "user@example.com"
         fill_in "password",              with: "Password1"
         fill_in "password confirmation", with: "Password1"
-        click_button "Sign up"
         
-        expect(current_path).to eq user_path(1)
-        expect(page).to_not have_selector "#error_explanation"
+        expect {
+          click_on "Sign up"
+        }.to change(User, :count).by(1)
+        user = User.last
+        expect(current_path).to eq user_path(user)
+        expect(page).to have_content "Welcome to the meet app!"
+        expect(page).to have_selector ".profile-link"
       end 
     end  
   end
