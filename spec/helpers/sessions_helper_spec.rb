@@ -1,15 +1,24 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the SessionsHelper. For example:
-#
-# describe SessionsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe SessionsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  let(:user) { FactoryBot.create(:user) }
+  
+  describe "#current_user" do
+    context "when cookies are present" do
+      it "returns right user" do
+        save_info_in_cookies(user)
+        expect(current_user).to eq user
+        expect(is_logged_in?).to be_truthy
+      end
+    end  
+    
+    context "when remember digest and cookies token don't match" do
+      it "returns nil" do
+        save_info_in_cookies(user)
+        user.update_attribute(:remember_digest, User.digest(User.new_token))
+        expect(current_user).to be_nil
+      end  
+    end  
+  end  
 end

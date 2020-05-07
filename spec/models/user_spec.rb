@@ -75,7 +75,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end  
     
-    it "refuse invalid form" do
+    it "reject invalid form" do
       user.email = "user@example,com"
       expect(user).to be_invalid
       
@@ -156,7 +156,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
     
-    it "refuse invalid form" do
+    it "reject invalid form" do
       user.password = user.password_confirmation = "yosuke.harasawa"
       expect(user).to be_invalid
       
@@ -176,5 +176,13 @@ RSpec.describe User, type: :model do
       expect(user).to be_invalid
     end
   end
+  
+  describe "User model methods" do
+    describe "authenticated?" do
+      it "returns false for a user with nil digest" do
+        expect(user.authenticated?('')).to be_falsey
+      end
+    end
+  end  
   
 end  
