@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :name, 
     presence:   true,
-    length:     { maximum: 20 }
+    length:     { maximum: 30 }
     
   validates :email, 
     presence:   true,
@@ -18,7 +18,8 @@ class User < ApplicationRecord
   validates :password,
     presence:   true,
     length:     { in: 8..30 },
-    format:     { with: VALID_PASSWORD_REGEX }
+    format:     { with: VALID_PASSWORD_REGEX },
+    allow_nil: true
   
   class << self
     def digest(string)

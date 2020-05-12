@@ -11,8 +11,8 @@ RSpec.describe "Signup", type: :system do
       fill_in "password confirmation", with: "bar"
       
       expect {
-        click_on "Sign up"
-      }.to_not change(User, :count)
+        click_button "Sign up"
+      }.to_not change{ User.count }
       expect(current_path).to eq signup_path
       expect(page).to have_selector "#error_explanation"
     end
@@ -27,8 +27,8 @@ RSpec.describe "Signup", type: :system do
       fill_in "password confirmation", with: "Password1"
       
       expect {
-        click_on "Sign up"
-      }.to change(User, :count).by(1)
+        click_button "Sign up"
+      }.to change{ User.count }.by(1)
       user = User.last
       expect(current_path).to eq user_path(user)
       expect(page).to have_content "Welcome to the meet app!"

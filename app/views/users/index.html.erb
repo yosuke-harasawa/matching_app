@@ -1,0 +1,21 @@
+<% provide(:title, "Users") %>
+
+<%= will_paginate %>
+
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <%= link_to user.name, user %>
+          <% if current_user.admin? && !current_user?(user) %>
+            | <%= link_to "delete", user, method: :delete, 
+                        data: { confirm: "You sure?" } %>
+          <% end %>              
+        </div>
+      </div>
+    </div>
+  <% end %>  
+</div>
+
+<%= will_paginate %>

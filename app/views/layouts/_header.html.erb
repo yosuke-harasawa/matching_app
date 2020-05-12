@@ -4,7 +4,7 @@
     <nav>
       <ul>
         <li>
-          <%= link_to '#', method: :get do %>
+          <%= link_to users_path, method: :get do %>
             <i class="fas fa-search fa-3x"></i>
           <% end %>
         </li>
@@ -20,7 +20,7 @@
             <% end %>  
           </li>
           <li>
-            <%= link_to '#', method: :get do %>
+            <%= link_to edit_user_path(current_user) do %>
               <i class="profile-link far fa-user fa-3x"></i>
             <% end %>  
           </li>

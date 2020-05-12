@@ -7,13 +7,13 @@ RSpec.describe "Login", type: :system do
   def submit_invalid_login_info
     fill_in "email",    with: ""
     fill_in "password", with: "foo"
-    click_on "Log in"
+    click_button "Log in"
   end
   
   def submit_valid_login_info
     fill_in "email",    with: user.email
     fill_in "password", with: user.password
-    click_on "Log in"
+    click_button "Log in"
   end
   
   describe "Log in" do
