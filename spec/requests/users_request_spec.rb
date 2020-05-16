@@ -2,8 +2,31 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   
-  let!(:user)       { FactoryBot.create(:user) } 
-  let!(:other_user) { FactoryBot.create(:other_user) }
+  let!(:user)              { FactoryBot.create(:user) } 
+  let!(:other_user)        { FactoryBot.create(:other_user) }
+  let(:no_activation_user) { FactoryBot.create(:no_activation_user) }
+  
+  describe "#index" do
+    it "doesn't display non activation user" do
+      log_in_as(user)
+      get users_path
+      expect(response.body).to include user.name
+      expect(response.body).to_not include no_activation_user.name
+    end  
+  end
+  
+  describe "#show" do
+    it "display a user" do
+      get user_path(user)
+      expect(response).to be_successful
+    end
+    
+    it "doesn't display non activation user" do
+      get user_path(no_activation_user)
+      follow_redirect!
+      expect(request.fullpath).to eq root_path
+    end  
+  end
   
   describe "#new" do
     it "responds successfully" do
