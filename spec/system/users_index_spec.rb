@@ -4,7 +4,7 @@ RSpec.describe "UsersIndex", type: :system do
   
   let(:admin)        { FactoryBot.create(:user) }
   let!(:non_admin)   { FactoryBot.create(:other_user) }
-  let!(:other_users) { FactoryBot.create_list(:other_users, 30) }
+  let!(:other_users) { FactoryBot.create_list(:other_users, 40) }
   
   def log_in_as(user)
     visit login_path
@@ -17,11 +17,17 @@ RSpec.describe "UsersIndex", type: :system do
     log_in_as(non_admin)
     visit users_path
     expect(page).to have_selector ".pagination"
-    users_of_first_page = User.paginate(page: 1)
+    users_of_first_page = User.page(1)
     users_of_first_page.each do |user|
       expect(page).to have_link href: user_path(user), text: user.name
     end  
   end  
+      
+  # it "自分は表示されない" do
+  #   log_in_as(non_admin)
+  #   visit users_path
+  #   expect(page).to_not have_link non_admin.name, href: user_path(non_admin)
+  # end
   
   describe "delete links" do
     context "when user is admin" do
@@ -29,6 +35,7 @@ RSpec.describe "UsersIndex", type: :system do
         log_in_as(admin)
         visit users_path
         expect(page).to have_selector "a[data-method=delete]", text: "delete"
+        expect(page).to_not have_link "delete", href: user_path(admin)
         expect{
           click_link "delete", href: user_path(non_admin)
         }.to change{ User.count }.by(-1)

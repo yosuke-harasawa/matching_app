@@ -39,10 +39,10 @@ RSpec.describe "UsersEdit", type: :system do
     it "is failed" do
       log_in_as(user)
       visit edit_user_path(user)
-      fill_in "user name",             with: ""
-      fill_in "email",                 with: "user@invalid"
-      fill_in "password",              with: "foo"
-      fill_in "password confirmation", with: "bar"
+      fill_in "Name",             with: ""
+      fill_in "Email",                 with: "user@invalid"
+      fill_in "Password",              with: "foo"
+      fill_in "Password confirmation", with: "bar"
       click_button "Update Profile"
       expect(current_path).to eq user_path(user)
       expect(page).to have_selector "#error_explanation"
@@ -53,10 +53,10 @@ RSpec.describe "UsersEdit", type: :system do
     it "is successful" do
       log_in_as(user)
       visit edit_user_path(user)
-      fill_in "user name",             with: "valid user"
-      fill_in "email",                 with: "user@valid.com"
-      fill_in "password",              with: ""
-      fill_in "password confirmation", with: ""
+      fill_in "Name",             with: "valid user"
+      fill_in "Email",                 with: "user@valid.com"
+      fill_in "Password",              with: ""
+      fill_in "Password confirmation", with: ""
       click_button "Update Profile"
       expect(current_path).to eq user_path(user)
       expect(page).to have_content "Update successful!"

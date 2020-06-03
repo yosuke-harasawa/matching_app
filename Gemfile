@@ -9,8 +9,12 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
 gem 'bcrypt', '3.1.12'
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+gem 'kaminari'
+gem 'mini_magick'
+gem 'image_processing'
+gem 'aws-sdk-s3'
+gem 'jp_prefecture'
+gem 'countries'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 # Use Puma as the app server
@@ -60,6 +64,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
   gem 'faker'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do

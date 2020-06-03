@@ -1,4 +1,22 @@
 <% provide(:title, @user.name) %>
-<%= @user.name %><%= @user.email %>
-<%= link_to "Log out", logout_path, method: :delete, 
-            class: "btn btn-danger btn-lg" %>
+<% if @user.avatar.attached? %>
+  <%= image_tag @user.avatar.variant(combine_options: { resize: "300x300^", 
+                                      crop: "300x300+0+0", gravity: :center })
+                                      .processed %>
+<% else %> 
+  <%= image_tag 'default_avatar.png', size: "300x300" %>
+<% end %>  
+<h1><%= @user.name %></h1>
+<% if @user == current_user %>
+  <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-info btn-lg" %>
+  <%= link_to "Log out", logout_path, method: :delete, 
+              class: "btn btn-danger btn-lg" %>
+<% end %>   
+<p>Gender <%= @user.gender %></p>
+<p>Age <%= @user.age %></p>
+<p>Address <%= @user.prefecture_name %></p>
+<p>Nationality <%= @user.nationality %></p>
+<p>BIO <%= @user.bio %></p>
+<p>Hobby <% @user.hobby %></p>
+<p>Job <%= @user.job %></p>
+<p>Status <%= @user.status %></p>
