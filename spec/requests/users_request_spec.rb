@@ -7,10 +7,28 @@ RSpec.describe "Users", type: :request do
   let(:no_activation_user) { FactoryBot.create(:no_activation_user) }
   
   describe "#index" do
+    it "登録していないユーザーも見れる" do
+      get users_path
+      expect(response).to be_successful
+    end
+    
+    # it "もし登録していたら自分は表示されない" do
+    #   get signup_path
+    #   post signup_path, params: {
+    #     user: {
+    #       name: "user",
+    #       email: "user@example.com",
+    #       password: "Password1",
+    #       password_confirmation: "Password1"
+    #     }
+    #   }
+    #   get users_path
+    #   expect(page).to_not have_content 
+    # end  
+    
     it "doesn't display non activation user" do
       log_in_as(user)
       get users_path
-      expect(response.body).to include user.name
       expect(response.body).to_not include no_activation_user.name
     end  
   end

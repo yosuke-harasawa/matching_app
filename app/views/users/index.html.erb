@@ -1,21 +1,30 @@
 <% provide(:title, "Users") %>
 
-<%= will_paginate %>
+<%= paginate @users %>
 
 <div class="row">
   <% @users.each do |user| %>
     <div class="col-md-3">
       <div class="card">
         <div class="card-body">
+          <% if user.avatar.attached? %>
+            <%= image_tag user.avatar.variant(combine_options: { resize: "200x200^", 
+                                              crop: "200x200+0+0", gravity: :center })
+                                              .processed %>
+          <% else %> 
+            <%= image_tag 'default_avatar.png', size: "200x200" %>
+          <% end %>  
           <%= link_to user.name, user %>
-          <% if current_user.admin? && !current_user?(user) %>
-            | <%= link_to "delete", user, method: :delete, 
-                        data: { confirm: "You sure?" } %>
-          <% end %>              
+          <% if logged_in? %>
+            <% if current_user.admin? && !current_user?(user) %>
+              | <%= link_to "delete", user, method: :delete, 
+                          data: { confirm: "You sure?" } %>
+            <% end %>              
+          <% end %>
         </div>
       </div>
     </div>
   <% end %>  
 </div>
 
-<%= will_paginate %>
+<%= paginate @users %>

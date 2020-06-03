@@ -1,7 +1,16 @@
 class User < ApplicationRecord
+  has_one_attached  :avatar
+  # has_many_attached :photos
+  attribute :remove_avatar, :boolean
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
+  before_save do 
+    if remove_avatar
+      self.avatar.purge
+    end
+  end  
   before_create :create_activation_digest
+  # before_create :default_avatar
   VALID_EMAIL_REGEX    = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]+\z/
 
@@ -21,6 +30,29 @@ class User < ApplicationRecord
     length:     { in: 8..30 },
     format:     { with: VALID_PASSWORD_REGEX },
     allow_nil: true
+  
+  # validates :age,
+  #   length:     { is: 2 }
+  
+  validates :bio,
+    length:     { maximum: 1000 }
+  
+  validates :hobby,
+    length:     { maximum: 100 }
+  
+  validates :job,
+   length:      { maximum: 30 }
+  
+  include JpPrefecture
+  jp_prefecture :prefecture_code
+  
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: prefecture_code).try(:name_e)
+  end
+  
+  def prefecture_name=(prefecture_name)
+    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+  end
   
   class << self
     def digest(string)
@@ -79,4 +111,11 @@ class User < ApplicationRecord
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
     end  
+    
+    # def default_avatar
+    #   self.avatar.attach(io: File.open(Rails.root.join('app',
+    #   'assets', 'images', 'default_avatar.png')), 
+    #   filename: 'default_avatar.png', content_type: 'img/png')
+    # end  
+
 end

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: [:destroy]
   
   def index
-    @users = User.where(activated: true).paginate(page: params[:page])
+    @users = User.where(activated: true).page(params[:page]).per(40)
   end
 
   def show
@@ -50,16 +50,11 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:avatar, :name, :gender, :age, :prefecture_code, 
+                                   :nationality, :bio, :hobby, :job, :status, :email, 
+                                   :password, :password_confirmation,
+                                   :remove_avatar)
     end  
-    
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in!"
-        redirect_to login_url
-      end
-    end 
     
     def correct_user
       @user = User.find(params[:id])
@@ -69,4 +64,5 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end  
+    
 end
