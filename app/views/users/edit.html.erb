@@ -46,7 +46,7 @@
       
       <div class="form-group">
         <%= f.label :nationality %>
-        <%= f.collection_select :nationality, ISO3166::Country.all, :name, :name,
+        <%= f.collection_select :nationality, Country.all, :name, :name,
                               include_blank: "-----" %>
       </div>
       

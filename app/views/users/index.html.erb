@@ -15,6 +15,12 @@
             <%= image_tag 'default_avatar.png', size: "200x200" %>
           <% end %>  
           <%= link_to user.name, user %>
+          <%= Country.find_country_by_name(user.nationality).emoji_flag %>
+          
+          <%= user.prefecture_name %>
+          <%= user.age %>
+          <%= user.gender %>
+          
           <% if logged_in? %>
             <% if current_user.admin? && !current_user?(user) %>
               | <%= link_to "delete", user, method: :delete, 
