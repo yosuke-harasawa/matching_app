@@ -4,6 +4,10 @@ FactoryBot.define do
     email                 { "yosuke@gmail.com" }
     password              { "Yosuke11" }
     password_confirmation { "Yosuke11" }
+    gender                { "male" }
+    age                   { 28 }
+    prefecture_code       { 10 }
+    nationality           { "Japan" }
     admin                 { true }
     activated             { true }
     activated_at          { Time.zone.now }
@@ -14,6 +18,10 @@ FactoryBot.define do
     email                 { "hiroki@gmail.com" }
     password              { "Hiroki08" }
     password_confirmation { "Hiroki08" }
+    gender                { "male" }
+    age                   { 28 }
+    prefecture_code       { 10 }
+    nationality           { "Japan" }
     activated             { true }
     activated_at          { Time.zone.now }
   end  
@@ -23,6 +31,10 @@ FactoryBot.define do
     sequence(:email)      { |n| "test#{n}@example.com" }
     password              { "Password1" }
     password_confirmation { "Password1" }
+    gender                { "female" }
+    age                   { 23 }
+    prefecture_code       { 10 }
+    nationality           { "Philippines" }
     activated             { true }
     activated_at          { Time.zone.now }
   end  
@@ -32,6 +44,10 @@ FactoryBot.define do
     email                 { "tak@gmail.com" }
     password              { "Takuto11" }
     password_confirmation { "Takuto11" }
+    gender                { "male" }
+    age                   { "22" }
+    prefecture_code       { 10 }
+    nationality           { "Japan" }
     activated             { false }
     activated_at          { Time.zone.now }
   end

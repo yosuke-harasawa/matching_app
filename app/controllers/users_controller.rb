@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy, :followers]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy]
   
@@ -47,6 +47,19 @@ class UsersController < ApplicationController
     redirect_to users_url
   end  
   
+  def followers
+    @title = "Friend Request"
+    @user  = current_user
+    @users = @user.followers
+    render 'show_follow'
+  end  
+  
+  def matchers
+    @title = "Matching"
+    @users = current_user.matching_users
+    render 'show_match'
+  end  
+  
   private
   
     def user_params
@@ -63,6 +76,10 @@ class UsersController < ApplicationController
     
     def admin_user
       redirect_to(root_url) unless current_user.admin?
-    end  
+    end 
+    
+    # def matching_users
+    #   User.where(id: passive_relationships.select(:follower_id)).where(id: active_relationships.select(:following_id))
+    # end
     
 end

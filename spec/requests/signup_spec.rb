@@ -21,7 +21,11 @@ RSpec.describe "Signup", type: :request do
         name:                  "user",
         email:                 "user@example.com",
         password:              "Password1",
-        password_confirmation: "Password1"
+        password_confirmation: "Password1",
+        gender:                "male",
+        age:                   "28",
+        prefecture_code:       "10",
+        nationality:           "Japan"
       }
     }
   end  

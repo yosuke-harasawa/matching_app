@@ -25,6 +25,10 @@ RSpec.describe "Signup", type: :system do
       fill_in "email",                 with: "user@example.com"
       fill_in "password",              with: "Password1"
       fill_in "password confirmation", with: "Password1"
+      fill_in "age",                   with: 28
+      choose                           "male"               
+      select                           "Gunma", from: "Address"
+      select                           "Japan", from: "Nationality"
       
       expect {
         click_button "Sign up"

@@ -1,4 +1,10 @@
 class User < ApplicationRecord
+  has_many :active_relationships, class_name: "Relationship", 
+           foreign_key: :follower_id, dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship",
+           foreign_key: :following_id, dependent: :destroy
+  has_many :following, through: :active_relationships
+  has_many :followers, through: :passive_relationships
   has_one_attached  :avatar
   # has_many_attached :photos
   attribute :remove_avatar, :boolean
@@ -14,34 +20,44 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX    = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]+\z/
 
-  validates :name, 
-    presence:   true,
-    length:     { maximum: 30 }
+  validates   :name, 
+    presence: true,
+    length:   { maximum: 30 }
     
-  validates :email, 
+  validates     :email, 
     presence:   true,
     length:     { maximum: 50 },
     format:     { with: VALID_EMAIL_REGEX },
     uniqueness: { case_sensitive: false }
   
   has_secure_password  
-  validates :password,
-    presence:   true,
-    length:     { in: 8..30 },
-    format:     { with: VALID_PASSWORD_REGEX },
+  validates   :password,
+    presence: true,
+    length:   { in: 8..30 },
+    format:   { with: VALID_PASSWORD_REGEX },
     allow_nil: true
   
-  # validates :age,
-  #   length:     { is: 2 }
+  validates   :gender,
+    presence: true
+    
+  validates   :age,
+    presence: true,
+    length:   { is: 2 }
+    
+  validates :prefecture_code,
+    presence: true
   
+  validates :nationality,
+    presence: true
+    
   validates :bio,
-    length:     { maximum: 1000 }
+    length: { maximum: 1000 }
   
   validates :hobby,
-    length:     { maximum: 100 }
+    length: { maximum: 100 }
   
   validates :job,
-   length:      { maximum: 30 }
+    length: { maximum: 30 }
   
   include JpPrefecture
   jp_prefecture :prefecture_code
@@ -99,6 +115,19 @@ class User < ApplicationRecord
   
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end  
+  
+  def follow(other_user)
+    following << other_user
+  end
+  
+  def following?(other_user)
+    following.include?(other_user)
+  end  
+  
+  def matching_users
+    User.where(id: passive_relationships.select(:follower_id))
+        .where(id: active_relationships.select(:following_id))
   end  
   
   private
