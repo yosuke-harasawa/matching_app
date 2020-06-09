@@ -4,21 +4,22 @@
     <nav>
       <ul>
         <li>
-          <%= link_to users_path, method: :get do %>
+          <%= link_to users_path do %>
             <i class="fas fa-search fa-3x"></i>
           <% end %>
         </li>
         <% if logged_in? %>
           <li>
-            <%= link_to '#', method: :get do %>
+            <%= link_to followers_user_path(current_user) do %>
               <i class="like-link far fa-thumbs-up fa-3x"></i>
             <% end %>
           </li>
           <li>
-            <%= link_to '#', method: :get do %>
+            <%= link_to matchers_user_path(current_user) do %>
               <i class="chat-link far fa-comments fa-3x"></i>
             <% end %>  
           </li>
+
           <li>
             <%= link_to user_path(current_user) do %>
               <i class="my-profile-link far fa-user fa-3x"></i>

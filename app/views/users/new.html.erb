@@ -22,6 +22,29 @@
         <%= f.password_field :password_confirmation, class: "form-control", placeholder: "password confirmation" %>
       </div> 
       
+      <div class="form-group">
+        <%= f.radio_button :gender, :male %>
+        <%= f.label :gender, "male", value: :male %>
+        <%= f.radio_button :gender, :female %>
+        <%= f.label :gender, "female", value: :female %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.text_field :age, class: "form-control", placeholder: "age" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :prefecture_code, "Address" %>
+        <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, 
+                                :code, :name_e, include_blank: "-----" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :nationality %>
+        <%= f.collection_select :nationality, Country.all, :name, :name,
+                              include_blank: "-----" %>
+      </div>
+      
       <%= f.submit "Sign up", class: "btn btn-primary btn-lg" %>
     <% end %>  
   </div>

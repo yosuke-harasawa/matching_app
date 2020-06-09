@@ -7,9 +7,14 @@ RSpec.describe User, type: :model do
       name:                  "Yosuke",
       email:                 "yosuke@example.com",
       password:              "Yosuke11",
-      password_confirmation: "Yosuke11"
+      password_confirmation: "Yosuke11",
+      gender:                "male",
+      age:                   28,
+      prefecture_code:       10,
+      nationality:           "Japan"
     )
   }  
+  let(:other_user){ FactoryBot.create(:other_user) }
   
   describe "User" do
     it "has a valid factory" do
@@ -183,6 +188,16 @@ RSpec.describe User, type: :model do
         expect(user.authenticated?(:remember, '')).to be_falsey
       end
     end
+    
+    describe "following?" do
+      it "returns correct" do
+        expect(user.following?(other_user)).to be_falsey
+        user.follow(other_user)
+        expect(user.following?(other_user)).to be_truthy
+        #TODO
+        #expect(other_user.followers.include?(user)).to be_truthy
+      end
+    end  
   end  
   
 end  

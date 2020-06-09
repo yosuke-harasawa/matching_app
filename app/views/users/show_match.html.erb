@@ -1,0 +1,12 @@
+<% provide(:title, @title) %>
+<% @users.each do |user| %>
+  <div class="card">
+    <div class="card-body">
+      <%= link_to user.name, user %>
+      <%= Country.find_country_by_name(user.nationality).emoji_flag %>
+      <%= user.prefecture_name %>
+      <%= user.gender %>
+      <%= user.age %>
+    </div>
+  </div>
+<% end %>  

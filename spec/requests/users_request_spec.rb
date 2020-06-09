@@ -87,4 +87,12 @@ RSpec.describe "Users", type: :request do
     end  
   end  
   
+  describe "followers" do
+    it "ログインしていなければログインページにリダイレクトする" do
+      get followers_user_path(user)
+      follow_redirect!
+      expect(request.fullpath).to eq login_path
+    end
+  end  
+  
 end  
