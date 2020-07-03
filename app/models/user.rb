@@ -5,18 +5,23 @@ class User < ApplicationRecord
            foreign_key: :following_id, dependent: :destroy
   has_many :following, through: :active_relationships
   has_many :followers, through: :passive_relationships
-  has_one_attached  :avatar
-  # has_many_attached :photos
-  attribute :remove_avatar, :boolean
+  has_many :chat_room_users, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_one_attached  :avatar, dependent: :destroy
+  
   attr_accessor :remember_token, :activation_token, :reset_token
+  attribute :remove_avatar, :boolean
+  
+  before_create :create_activation_digest
   before_save   :downcase_email
+  before_create :default_avatar
   before_save do 
     if remove_avatar
       self.avatar.purge
+      default_avatar
     end
   end  
-  before_create :create_activation_digest
-  # before_create :default_avatar
+  
   VALID_EMAIL_REGEX    = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]+\z/
 
@@ -130,6 +135,11 @@ class User < ApplicationRecord
         .where(id: active_relationships.select(:following_id))
   end  
   
+  def template
+    ApplicationController.renderer.render partial: 'messages/message', 
+      locals: { message: self }
+  end    
+  
   private
   
     def downcase_email
@@ -141,10 +151,10 @@ class User < ApplicationRecord
       self.activation_digest = User.digest(activation_token)
     end  
     
-    # def default_avatar
-    #   self.avatar.attach(io: File.open(Rails.root.join('app',
-    #   'assets', 'images', 'default_avatar.png')), 
-    #   filename: 'default_avatar.png', content_type: 'img/png')
-    # end  
+    def default_avatar
+      self.avatar.attach(io: File.open(Rails.root.join(
+                'app/assets/images/default_avatar.png')),
+                filename: 'default_avatar.png', content_type: 'img/png')
+    end  
 
 end

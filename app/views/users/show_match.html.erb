@@ -7,6 +7,10 @@
       <%= user.prefecture_name %>
       <%= user.gender %>
       <%= user.age %>
+      <%= form_with url: rooms_path do |f| %>
+        <%= f.hidden_field :user_id, value: user.id %>
+        <%= f.submit "Chat", class: "btn btn-success btn-lg" %>
+      <% end %>  
     </div>
   </div>
 <% end %>  

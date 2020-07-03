@@ -8,14 +8,11 @@
       
       <div class="form-group">
         <%= f.label "Avatar" %>
-        <% if @user.avatar.attached? %>
           <%= image_tag @user.avatar.variant(combine_options: { resize: "200x200^",
                                               crop: "200x200+0+0", gravity: :center })
-                                              .processed %>
-        <% else %>
-          <%= image_tag "default_avatar.png", size: "200x200" %>
-        <% end %>  
-        <%= f.file_field :avatar, class: "form-control-file" %>
+                                              .processed, id: :avatar_prev %>
+        <%= f.file_field :avatar, id: :avatar_img, class: "form-control-file" %>
+        <button id="delete_prev" class="btn btn-danger btn-lg">Delete Prevew</button>
         <%= f.check_box :remove_avatar, class: "form-control" %>
         <%= f.label :remove_avatar %>
       </div>

@@ -1,17 +1,11 @@
 <% provide(:title, @user.name) %>
-<% if @user.avatar.attached? %>
   <%= image_tag @user.avatar.variant(combine_options: { resize: "300x300^", 
                                       crop: "300x300+0+0", gravity: :center })
                                       .processed %>
-<% else %> 
-  <%= image_tag 'default_avatar.png', size: "300x300" %>
-<% end %>  
 <h1><%= @user.name %></h1>
 <% if logged_in? %>
   <% if current_user?(@user) %>
     <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-info btn-lg" %>
-    <%= link_to "Log out", logout_path, method: :delete, 
-                class: "btn btn-danger btn-lg" %>
   <% else %>
     <%= render 'follow_form' %>
   <% end %>
