@@ -1,5 +1,5 @@
 User.create!(
-  name:                  "Yosuke",
+  name:                  "yosuke",
   email:                 "yosuke@gmail.com",
   password:              "Yosuke7252",
   password_confirmation: "Yosuke7252",
@@ -14,7 +14,7 @@ User.create!(
   
 99.times do |n|
   name            = Faker::Name.name
-  email           = "example-#{n+1}@example.com"
+  email           = "user-#{n+1}@example.com"
   password        = "Password1"
   gender          = "female"
   age             = 23
@@ -32,11 +32,37 @@ User.create!(
     prefecture_code:       prefecture_code,
     nationality:           nationality
     )
-  end  
+end  
   
-#リレーションシップ
-user1 = User.first
-user2 = User.secondary
-user3 = User.third
-user1.follow(user2)
-user3.follow(user1)
+  Relationship.create!(
+    follower_id: 1,
+    following_id: 2
+    )
+    
+  Relationship.create!(
+    follower_id: 2,
+    following_id: 1
+    )
+    
+  ChatRoom.create!(
+    )  
+    
+  ChatRoomUser.create!(
+    chat_room_id: 1,
+    user_id: 1
+    )  
+    
+  ChatRoomUser.create!(
+    chat_room_id: 1,
+    user_id: 2
+    )  
+  
+
+  1000.times do |n|
+    Message.create!(
+      chat_room_id: 1,
+      user_id: 1,
+      content: "Hello World"
+      )
+  end    
+  

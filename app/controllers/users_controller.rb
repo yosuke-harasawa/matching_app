@@ -4,7 +4,13 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: [:destroy]
   
   def index
-    @users = User.where(activated: true).page(params[:page]).per(40)
+    if logged_in?
+      @users = User.where.not(id: current_user.id, activated: false)
+              .page(params[:page]).per(40)
+    else   
+      @users = User.where(activated: true)
+        .page(params[:page]).per(40)
+    end
   end
 
   def show
@@ -75,7 +81,8 @@ class UsersController < ApplicationController
     end  
     
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user.admin? or current_user?(@user)
     end 
     
     # def matching_users

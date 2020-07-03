@@ -1,0 +1,4 @@
+<div class="message" id="message-<%= message.id %>">
+  <p><%= message.user.name %>: <%= l message.created_at, format: '%-m/%-d(%a) %H:%M' %></p>
+  <%= simple_format(h message.content) %>
+</div>
