@@ -34,7 +34,7 @@
       </div>
       
       <div class="form-group">
-        <%= f.label :prefecture_code, "Address" %>
+        <%= f.label :prefecture_code, "Area" %>
         <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, 
                                 :code, :name_e, include_blank: "-----" %>
       </div>

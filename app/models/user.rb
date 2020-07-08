@@ -11,6 +11,7 @@ class User < ApplicationRecord
   
   attr_accessor :remember_token, :activation_token, :reset_token
   attribute :remove_avatar, :boolean
+  attribute :search_condition
   
   before_create :create_activation_digest
   before_save   :downcase_email

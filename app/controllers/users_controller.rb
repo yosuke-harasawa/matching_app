@@ -4,13 +4,19 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: [:destroy]
   
   def index
+    query = params[:q]
+    search_history = {
+      value: params[:q],
+    }
     if logged_in?
-      @users = User.where.not(id: current_user.id, activated: false)
-              .page(params[:page]).per(40)
-    else   
-      @users = User.where(activated: true)
-        .page(params[:page]).per(40)
-    end
+      query ||= eval(cookies[:recent_search_history].to_s)
+      cookies[:recent_search_history] = search_history if params[:q].present?
+      @q = User.ransack(query)
+      @users = @q.result.where.not(id: current_user.id, activated: false).page(params[:page]).per(40)
+    else
+      @q = User.ransack(query)
+      @users = @q.result.where(activated: true).page(params[:page]).per(40)
+    end  
   end
 
   def show
@@ -74,7 +80,7 @@ class UsersController < ApplicationController
                                    :password, :password_confirmation,
                                    :remove_avatar)
     end  
-    
+
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
