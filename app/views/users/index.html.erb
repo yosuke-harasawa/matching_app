@@ -2,6 +2,11 @@
 
 <%= paginate @users %>
 
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
+  Search
+</button>
+<%= render 'search_modal' %>
+
 <div class="row">
   <% @users.each do |user| %>
     <div class="col-md-3">

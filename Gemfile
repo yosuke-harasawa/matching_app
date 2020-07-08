@@ -15,6 +15,7 @@ gem 'image_processing'
 gem 'aws-sdk-s3'
 gem 'jp_prefecture'
 gem 'countries', require: 'countries/global'
+gem 'ransack'
 gem "websocket-extensions", ">= 0.1.5"
 gem "rack", ">= 2.2.3"
 # Use sqlite3 as the database for Active Record
