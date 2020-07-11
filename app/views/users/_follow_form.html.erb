@@ -3,7 +3,7 @@
     <button class="btn btn-light btn-lg" disabled>Requested</button> 
   <% else %>
     <%= form_with(model: current_user.active_relationships.build) do |f| %>
-      <div><%= f.hidden_field :following_id, value: @user.id %></div>
+      <%= f.hidden_field :following_id, value: @user.id %>
       <%= f.submit "LIKE!", class: "btn btn-danger btn-lg", 
           data: { confirm: "You sure?" } %>
     <% end %>

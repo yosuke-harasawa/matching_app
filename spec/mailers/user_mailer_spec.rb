@@ -1,9 +1,9 @@
 require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
+  
   describe "account_activation" do
-    
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
     let(:mail) { UserMailer.account_activation(user) }
 
     it "renders the mails" do
@@ -18,7 +18,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe "password_reset" do
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
     let(:mail) { UserMailer.password_reset(user) }
 
     it "renders the mails" do

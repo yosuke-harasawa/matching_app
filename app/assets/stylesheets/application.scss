@@ -36,6 +36,16 @@ a:hover {
 header li {
   display: inline-block;
   list-style-type: none;
+  padding: 0 15px;
+}
+
+.follower-link {
+  font-size: 3em;
+}
+
+.n-circle {
+  position: absolute;
+  padding-top: 0rem;
 }
 
 
