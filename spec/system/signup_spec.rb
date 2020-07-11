@@ -27,7 +27,7 @@ RSpec.describe "Signup", type: :system do
       fill_in "password confirmation", with: "Password1"
       fill_in "age",                   with: 28
       choose                           "male"               
-      select                           "Gunma", from: "Address"
+      select                           "Gunma", from: "Area"
       select                           "Japan", from: "Nationality"
       
       expect {

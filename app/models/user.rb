@@ -7,12 +7,15 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships
   has_many :chat_room_users, dependent: :destroy
   has_many :messages, dependent: :destroy
-  has_one_attached  :avatar, dependent: :destroy
+  has_many :active_notifications, class_name: "Notification", 
+           foreign_key: :visitor_id, dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification",
+           foreign_key: :visitted_id, dependent: :destroy
+  has_one_attached :avatar, dependent: :destroy
   
   attr_accessor :remember_token, :activation_token, :reset_token
   attribute :remove_avatar, :boolean
-  attribute :search_condition
-  
+
   before_create :create_activation_digest
   before_save   :downcase_email
   before_create :default_avatar
@@ -125,6 +128,9 @@ class User < ApplicationRecord
   
   def follow(other_user)
     following << other_user
+    if other_user.follow_notification
+      Relationship.send_notification_email(other_user, self)  
+    end  
   end
   
   def following?(other_user)
@@ -140,6 +146,17 @@ class User < ApplicationRecord
     ApplicationController.renderer.render partial: 'messages/message', 
       locals: { message: self }
   end    
+  
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visitor_id = ? and visitted_id = ? and action = ?", current_user.id, id, "follow"])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visitted_id: id,
+        action: "follow"
+        )
+      notification.save if notification.valid?
+    end
+  end  
   
   private
   

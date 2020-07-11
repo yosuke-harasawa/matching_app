@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   
-  let!(:user)              { FactoryBot.create(:user) } 
-  let!(:other_user)        { FactoryBot.create(:other_user) }
-  let(:no_activation_user) { FactoryBot.create(:no_activation_user) }
+  let!(:user)              { create(:user) } 
+  let!(:other_user)        { create(:other_user) }
+  let(:no_activation_user) { create(:no_activation_user) }
   
   describe "#index" do
     it "登録していないユーザーも見れる" do
@@ -94,5 +94,19 @@ RSpec.describe "Users", type: :request do
       expect(request.fullpath).to eq login_path
     end
   end  
+  
+  describe "follow_notification" do
+    context "when follow_notification is true" do
+      it "フォロー通知メールを受け取る" do
+        
+      end
+    end
+    
+    context "when follow_notification is false" do
+      it "フォロー通知メールを受け取らない" do
+        
+      end
+    end  
+  end
   
 end  

@@ -11,7 +11,14 @@
         <% if logged_in? %>
           <li>
             <%= link_to followers_user_path(current_user) do %>
-              <i class="like-link far fa-thumbs-up fa-3x"></i>
+              <% if unchecked_notifications.any? %>
+                <!--<span class="fa-stack">-->
+                  <i class="follower-link far fa-thumbs-up"></i>
+                  <i class="n-circle fas fa-circle"></i>
+                <!--</span>-->
+              <% else %>
+                <i class="follower-link far fa-thumbs-up fa-3x"></i>
+              <% end %>  
             <% end %>
           </li>
           

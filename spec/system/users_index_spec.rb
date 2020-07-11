@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "UsersIndex", type: :system do
   
-  let(:admin)        { FactoryBot.create(:user) }
-  let!(:non_admin)   { FactoryBot.create(:other_user) }
-  let!(:other_users) { FactoryBot.create_list(:other_users, 40) }
+  let(:admin)        { create(:user) }
+  let!(:non_admin)   { create(:other_user) }
+  let!(:other_users) { create_list(:other_users, 40) }
   
   def log_in_as(user)
     visit login_path
@@ -16,7 +16,7 @@ RSpec.describe "UsersIndex", type: :system do
   it "includes pagination" do
     log_in_as(non_admin)
     visit users_path
-    expect(page).to have_selector ".pagination"
+    expect(page).to have_css '.pagination'
     users_of_first_page = User.page(1)
     users_of_first_page.each do |user|
       expect(page).to have_link href: user_path(user), text: user.name

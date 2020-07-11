@@ -63,6 +63,8 @@ class UsersController < ApplicationController
     @title = "Friend Request"
     @user  = current_user
     @users = @user.followers
+    notifications = @user.passive_notifications.where(checked: false)
+    notifications.update(checked: true)
     render 'show_follow'
   end  
   
@@ -78,7 +80,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:avatar, :name, :gender, :age, :prefecture_code, 
                                    :nationality, :bio, :hobby, :job, :status, :email, 
                                    :password, :password_confirmation,
-                                   :remove_avatar)
+                                   :remove_avatar, :follow_notification)
     end  
 
     def correct_user

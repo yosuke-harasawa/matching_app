@@ -11,6 +11,7 @@ FactoryBot.define do
     admin                 { true }
     activated             { true }
     activated_at          { Time.zone.now }
+    follow_notification   { true }
   end
   
   factory :other_user, class: User do
@@ -24,6 +25,7 @@ FactoryBot.define do
     nationality           { "Japan" }
     activated             { true }
     activated_at          { Time.zone.now }
+    follow_notification   { false }
   end  
   
   factory :other_users, class: User do
