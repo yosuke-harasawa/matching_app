@@ -12,6 +12,7 @@ FactoryBot.define do
     activated             { true }
     activated_at          { Time.zone.now }
     follow_notification   { true }
+    message_notification  { true }
   end
   
   factory :other_user, class: User do

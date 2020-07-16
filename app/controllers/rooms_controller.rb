@@ -23,6 +23,9 @@ class RoomsController < ApplicationController
     @messages = Message.includes(:user).where(chat_room: chat_room).order(:created_at).last(100)
     # メッセージ投稿に利用
     @message = current_user.messages.build
+    
+    notification = current_user.passive_notifications.where(chat_room_id: chat_room.id, checked: false)
+    notification.update_all(checked: true)
   end
   
   def show_additionally

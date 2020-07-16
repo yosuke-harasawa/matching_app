@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
-  
+  let!(:user)       { create(:user) }
+  let!(:other_user) { create(:other_user) }
   let(:relationship){ 
     Relationship.new(
       follower_id:  1,
@@ -13,12 +14,12 @@ RSpec.describe Relationship, type: :model do
     expect(relationship).to be_valid
   end
   
-  it "require follower_id" do
+  it "フォロワーIDは必須" do
     relationship.follower_id = ""
     expect(relationship).to_not be_valid
   end
 
-  it "require following_id" do
+  it "フォローイングIDは必須" do
     relationship.following_id = ""
     expect(relationship).to_not be_valid
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_074108) do
+ActiveRecord::Schema.define(version: 2020_07_14_051002) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -55,13 +55,16 @@ ActiveRecord::Schema.define(version: 2020_07_11_074108) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id", null: false
-    t.integer "visitted_id", null: false
+    t.integer "visited_id", null: false
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "chat_room_id"
+    t.integer "message_id"
+    t.index ["chat_room_id"], name: "index_notifications_on_chat_room_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
-    t.index ["visitted_id"], name: "index_notifications_on_visitted_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -94,6 +97,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_074108) do
     t.string "job"
     t.string "status"
     t.boolean "follow_notification", default: true
+    t.boolean "message_notification", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

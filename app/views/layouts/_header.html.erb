@@ -11,11 +11,9 @@
         <% if logged_in? %>
           <li>
             <%= link_to followers_user_path(current_user) do %>
-              <% if unchecked_notifications.any? %>
-                <!--<span class="fa-stack">-->
-                  <i class="follower-link far fa-thumbs-up"></i>
-                  <i class="n-circle fas fa-circle"></i>
-                <!--</span>-->
+              <% if unchecked_follow_notifications.any? %>
+                <i class="follower-link far fa-thumbs-up"></i>
+                <i class="n-circle fas fa-circle"></i>
               <% else %>
                 <i class="follower-link far fa-thumbs-up fa-3x"></i>
               <% end %>  
@@ -24,7 +22,12 @@
           
           <li>
             <%= link_to matchers_user_path(current_user) do %>
-              <i class="chat-link far fa-comments fa-3x"></i>
+              <% if unchecked_message_notifications.any? %>
+                <i class="chat-link far fa-comments fa-3x"></i>
+                <i class="n-circle fas fa-circle"></i>
+              <% else %>
+                <i class="chat-link far fa-comments fa-3x"></i>
+              <% end %>  
             <% end %>  
           </li>
 
