@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
-  
   describe "account_activation" do
     let(:user) { create(:user) }
     let(:mail) { UserMailer.account_activation(user) }
@@ -30,5 +29,4 @@ RSpec.describe UserMailer, type: :mailer do
       expect(mail.body.encoded).to match(CGI.escape(user.email))
     end
   end
-
 end

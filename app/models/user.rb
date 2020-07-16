@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: "Notification", 
            foreign_key: :visitor_id, dependent: :destroy
   has_many :passive_notifications, class_name: "Notification",
-           foreign_key: :visitted_id, dependent: :destroy
+           foreign_key: :visited_id, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
   
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -148,15 +148,27 @@ class User < ApplicationRecord
   end    
   
   def create_notification_follow!(current_user)
-    temp = Notification.where(["visitor_id = ? and visitted_id = ? and action = ?", current_user.id, id, "follow"])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ?", current_user.id, id, "follow"])
     if temp.blank?
       notification = current_user.active_notifications.new(
-        visitted_id: id,
+        visited_id: id,
         action: "follow"
         )
       notification.save if notification.valid?
     end
   end  
+  
+  def chat_room?(current_user)
+    current_user_chat_rooms = ChatRoomUser.where(user_id: current_user.id).map(&:chat_room)
+    chat_room = ChatRoomUser.where(chat_room: current_user_chat_rooms, user_id: id).map(&:chat_room).first
+    chat_room.present?
+  end  
+  
+  def show_chat_room(current_user)
+    current_user_chat_rooms = ChatRoomUser.where(user_id: current_user.id).map(&:chat_room)
+    chat_room = ChatRoomUser.where(chat_room: current_user_chat_rooms, user_id: id).map(&:chat_room).first
+    chat_room.id
+  end
   
   private
   

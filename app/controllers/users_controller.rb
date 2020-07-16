@@ -63,7 +63,7 @@ class UsersController < ApplicationController
     @title = "Friend Request"
     @user  = current_user
     @users = @user.followers
-    notifications = @user.passive_notifications.where(checked: false)
+    notifications = @user.passive_notifications.where(action: "follow", checked: false)
     notifications.update(checked: true)
     render 'show_follow'
   end  

@@ -90,6 +90,11 @@
         <%= f.check_box :follow_notification, class: "form-control" %>
       </div>
       
+      <div class="form-group">
+        <%= f.label :message_notification %>
+        <%= f.check_box :message_notification, class: "form-control" %>
+      </div>
+      
       <%= f.submit "Update Profile", class: "btn btn-primary btn-lg" %>
     <% end %>  
   </div>

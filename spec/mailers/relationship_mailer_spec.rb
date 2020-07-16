@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.describe RelationshipMailer, type: :mailer do
-  
   describe "follower_notification" do
     let(:user)     { create(:user) }
     let(:follower) { create(:other_user) }

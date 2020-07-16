@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "UsersShow", type: :system do
-  
   def set_up
     ActionMailer::Base.deliveries.clear
   end
@@ -22,7 +21,7 @@ RSpec.describe "UsersShow", type: :system do
         log_in_as(off_user)
         visit user_path(on_user)
         click_button "LIKE!" 
-        expect(page).to have_content "Requested"
+        expect(page).to have_button "Requested", disabled: true
         expect(ActionMailer::Base.deliveries.size).to eq 1
       end  
     end
@@ -32,10 +31,9 @@ RSpec.describe "UsersShow", type: :system do
         log_in_as(on_user)
         visit user_path(off_user)
         click_button "LIKE!" 
-        expect(page).to have_content "Requested"
+        expect(page).to have_button "Requested", disabled: true
         expect(ActionMailer::Base.deliveries.size).to eq 0
       end  
     end
   end
-  
 end

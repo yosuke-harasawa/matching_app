@@ -56,13 +56,11 @@ end
     chat_room_id: 1,
     user_id: 2
     )  
-  
 
-  1000.times do |n|
+  100.times do |n|
     Message.create!(
       chat_room_id: 1,
       user_id: 1,
       content: "Hello World"
       )
-  end    
-  
+  end   
