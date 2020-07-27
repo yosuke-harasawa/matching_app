@@ -1,0 +1,13 @@
+h1
+  | meet
+p
+  | Hi 
+  = @user.name
+  | ,
+p
+  = @follower.name
+  |  followed you!
+p
+  | Check 
+  = link_to "profile", user_url(@follower)
+  | , Let's be friends!

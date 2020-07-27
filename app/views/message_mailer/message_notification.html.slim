@@ -1,0 +1,13 @@
+h1
+  | meet
+p
+  | Hi, 
+  = @reciever.name
+p
+  | You've got a message from 
+  = @sender.name
+  | .
+p
+  | Check it 
+  = link_to "here", room_url(@chat_room_id)
+  | !

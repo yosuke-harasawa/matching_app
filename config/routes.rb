@@ -7,15 +7,15 @@ Rails.application.routes.draw do
   post   '/login',    to: 'sessions#create'
   delete '/logout',   to: 'sessions#destroy'
   get    '/show_additionally', to: 'rooms#show_additionally'
-  
+
   resources :users do
     member do
-      get :following, :followers, :matchers
+      get :followers, :matchers, :account
     end
-  end  
+  end
   resources :account_activations, only: :edit
-  resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :password_resets,     only: %i[new create edit update]
   resources :relationships,       only: :create
-  resources :rooms,               only: [:show, :create]
+  resources :rooms,               only: %i[show create]
   resources :messages,            only: :create
 end

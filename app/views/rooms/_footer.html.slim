@@ -1,0 +1,7 @@
+footer#footer.fixed-bottom
+  = form_with model: @message do |f|
+    .form-group
+      = f.text_area :content, id: 'message_content', class: 'form-control', rows: '1', maxlength: '500'
+      = f.hidden_field :chat_room_id, value: params[:id]
+    .form-group
+      = f.submit "Submit", class: 'btn btn-primary btn-block disabled', id: 'message-button'

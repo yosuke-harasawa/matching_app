@@ -1,36 +1,37 @@
 require 'rails_helper'
 
-RSpec.describe "Sessions", type: :request do
-  
-  let(:user) { FactoryBot.create(:user) }
-  
+RSpec.describe 'Sessions', type: :request do
+  let(:user) { create(:user) }
+
   def post_login_info(remember_me = 0)
+    get login_path
     post login_path, params: {
       session: {
-        email:       user.email,
-        password:    user.password,
+        email: user.email,
+        password: user.password,
         remember_me: remember_me
       }
     }
   end
-  
-  it "is temporary when user don't check remember me box" do
-    get login_path
-    post_login_info(0)
-    expect(is_logged_in?).to be_truthy
-    expect(cookies[:remember_token]).to be_nil
+
+  context "when user don't check remember me box" do
+    it 'is temporary' do
+      post_login_info(0)
+      expect(is_logged_in?).to be_truthy
+      expect(cookies[:remember_token]).to be_nil
+    end
   end
-  
-  it "depends on cookies when user check remember me box" do
-    get login_path
-    post_login_info(1)
-    expect(is_logged_in?).to be_truthy
-    expect(cookies[:remember_token]).to_not be_nil
-  end  
-  
-  context "when user logout after login with checking remember me box" do
-    it "is expired" do
-      get login_path
+
+  context 'when user check remember me box' do
+    it 'depends on cookies' do
+      post_login_info(1)
+      expect(is_logged_in?).to be_truthy
+      expect(cookies[:remember_token]).to_not be_nil
+    end
+  end
+
+  context 'when user logout' do
+    it 'is expired' do
       post_login_info(1)
       expect(is_logged_in?).to be_truthy
       expect(cookies[:remember_token]).to_not be_empty
@@ -39,10 +40,9 @@ RSpec.describe "Sessions", type: :request do
       expect(cookies[:remember_token]).to be_empty
     end
   end
-  
-  context "when the site is opened in two tabs or windows" do
-    it "is expired at fisrt logout" do
-      get login_path
+
+  context 'when the site is opened in two tabs or windows' do
+    it 'is expired at fisrt logout' do
       post_login_info
       follow_redirect!
       expect(request.fullpath).to eq user_path(user)
@@ -55,6 +55,5 @@ RSpec.describe "Sessions", type: :request do
       follow_redirect!
       expect(request.fullpath).to eq root_path
     end
-  end  
-end  
-    
+  end
+end

@@ -1,0 +1,8 @@
+#follow_form
+  - if current_user.following?(@user)
+    button.btn.btn-light.btn-lg[disabled]
+      | Requested
+  - else
+    = form_with(model: current_user.active_relationships.build) do |f|
+      = f.hidden_field :following_id, value: @user.id
+      = f.submit "Follow", class: "btn btn-primary btn-lg", data: { confirm: "You sure?" }

@@ -1,0 +1,14 @@
+- provide(:title, @title)
+- @users.each do |user|
+  .card
+    .card-body
+      = link_to user.name, user
+      = Country.find_country_by_name(user.nationality).emoji_flag
+      = user.prefecture_name
+      = user.gender
+      = user.age
+      - if user.chat_room?(current_user) && unchecked_room_notifications(user.show_chat_room(current_user)).any?
+        i.n-circle.fas.fa-circle
+      = form_with url: rooms_path do |f|
+        = f.hidden_field :user_id, value: user.id
+        = f.submit "Chat", class: "btn btn-success btn-lg"

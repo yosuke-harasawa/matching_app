@@ -18,22 +18,22 @@ class RoomsController < ApplicationController
   def show
     # チャット相手の情報を取得する
     chat_room = ChatRoom.find_by(id: params[:id])
-    @chat_room_user = chat_room.chat_room_users.
-      where.not(user_id: current_user.id).first.user
+    @chat_room_user = chat_room.chat_room_users
+                               .where.not(user_id: current_user.id).first.user
     @messages = Message.includes(:user).where(chat_room: chat_room).order(:created_at).last(100)
     # メッセージ投稿に利用
     @message = current_user.messages.build
-    
+
     notification = current_user.passive_notifications.where(chat_room_id: chat_room.id, checked: false)
     notification.update_all(checked: true)
   end
-  
+
   def show_additionally
     chat_room = ChatRoom.find_by(id: params[:chat_room_id])
     last_id = params[:oldest_message_id].to_i - 1
     @messages = Message.includes(:user).where(chat_room: chat_room).order(:created_at).where(id: 1..last_id).last(50)
-  end  
-  
+  end
+
   # def show
   #   # 投稿一覧表示に利用
   #   @messages = Message.includes(:user).order(:id)

@@ -17,8 +17,8 @@ module MatchingApp
     # the framework and any gems in your application.
     config.generators do |g|
       g.test_framework :rspec,
-      view_specs: false
-    end  
+                       view_specs: false
+    end
     config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end
