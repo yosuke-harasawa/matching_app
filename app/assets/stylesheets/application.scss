@@ -70,8 +70,19 @@ header li {
 
 // ユーザー編集ページ
 #avatar_prev {
-  with: 200px;
-  height: 200px;
+  // with: 200px;
+  // height: 200px;
+  border-radius: 50%;
+  padding: 5px;
+  border: 9px solid lightgray;
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+}
+
+#user_avatar {
+  display: none;
 }
 
 // メッセージ一覧

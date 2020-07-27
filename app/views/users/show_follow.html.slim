@@ -1,0 +1,9 @@
+- provide(:title, @title)
+- @users.each do |user|
+  .card
+    .card-body
+      = link_to user.name, user
+      = Country.find_country_by_name(user.nationality).emoji_flag
+      = user.prefecture_name
+      = user.age
+      = user.gender

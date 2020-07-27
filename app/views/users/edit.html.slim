@@ -1,0 +1,49 @@
+- provide(:title, "Edit Profile")
+h1
+  | Edit Profile
+.row
+  .col-md-6.col-md-offset-3
+    = form_with(model: @user, url: user_path(@user), local: true) do |f|
+      = render 'shared/error_messages'
+      .form-group
+        button#delete_prev[type="button"]
+          | x
+        = f.label :avatar do
+          = image_tag @user.avatar.variant(combine_options: { resize: "200^", crop: "200x200+0+0", gravity: :center }).processed, id: "avatar_prev"
+          = f.file_field :avatar
+        = f.check_box :remove_avatar, class: "form-control"
+        = f.label :remove_avatar
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: "form-control"
+      .form-group
+        = f.label :gender
+        = f.radio_button :gender, :male
+        = f.label :gender, "male", value: :male
+        = f.radio_button :gender, :female
+        = f.label :gender, "female", value: :female
+      .form-group
+        = f.label :age
+        = f.text_field :age, class: "form-control"
+      .form-group
+        = f.label :prefecture_code, "Area"
+        = f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name_e, include_blank: "-----"
+      .form-group
+        = f.label :nationality
+        = f.collection_select :nationality, Country.all, :name, :name, include_blank: "-----"
+      .form-group
+        = f.label :bio
+        = f.text_area :bio, size: "100x10", class: "form-control"
+      .form-group
+        = f.label :hobby
+        = f.text_field :hobby, class: "form-control"
+      .form-group
+        = f.label :job
+        = f.text_field :job, class: "form-control"
+      .form-group
+        = f.label :status
+        = f.radio_button :status, :single
+        = f.label :status, "single", value: :single
+        = f.radio_button :status, :married
+        = f.label :status, "married", value: :married
+      = f.submit "Update Profile", class: "btn btn-primary btn-lg"

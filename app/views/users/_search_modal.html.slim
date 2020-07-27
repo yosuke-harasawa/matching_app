@@ -1,0 +1,32 @@
+#exampleModal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"]
+  .modal-dialog[role="document"]
+    .modal-content
+      .modal-header
+        h5#exampleModalLabel.modal-title
+          | Search
+        button.close[type="button" data-dismiss="modal" aria-label="Close"]
+          span[aria-hidden="true"]
+            | ×
+      .modal-body
+        = search_form_for @q do |f|
+          .form-group
+            = f.label :gender
+            = f.radio_button :gender_eq, '', { checked: true }
+            = label :gender, "unspecified", value: ''
+            = f.radio_button :gender_eq, :male
+            = f.label :gender, "male", value: :male
+            = f.radio_button :gender_eq, :female
+            = f.label :gender, "female", value: :female
+          .form-group
+            = f.label :age
+            = f.number_field :age_gteq
+            | or higher 
+            = f.number_field :age_lteq
+            | or lower 
+          .form-group
+            = f.label :prefecture_code, "Area"
+            = f.collection_select :prefecture_code_eq, JpPrefecture::Prefecture.all, :code, :name_e, include_blank: "-----"
+          .form-group
+            = f.label :nationality
+            = f.collection_select :nationality_eq, Country.all, :name, :name, include_blank: "-----"
+          = f.submit "Search", class: "btn btn-primary btn-lg"

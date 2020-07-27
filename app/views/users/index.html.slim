@@ -1,0 +1,23 @@
+- provide(:title, "Users")
+= paginate @users
+button.btn.btn-primary.btn-lg[type="button" data-toggle="modal" data-target="#exampleModal"]
+  |  Search 
+= render 'search_modal'
+.row
+  - @users.each do |user|
+    .col-md-3
+      .card
+        .card-body
+          = image_tag \ 
+            user.avatar.variant(combine_options: { resize: "200x200^", 
+            crop: "200x200+0+0", gravity: :center }).processed
+          = link_to user.name, user
+          = Country.find_country_by_name(user.nationality).emoji_flag
+          = user.prefecture_name
+          = user.age
+          = user.gender
+          - if logged_in?
+            - if current_user.admin? && !current_user?(user)
+              |  | 
+              = link_to "delete", user, method: :delete, data: { confirm: "You sure?" }
+= paginate @users

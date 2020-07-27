@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :message do
     user_id { 1 }
-    context { "MyText" }
+    context { 'MyText' }
   end
 end

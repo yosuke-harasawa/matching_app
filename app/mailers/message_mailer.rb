@@ -1,5 +1,4 @@
 class MessageMailer < ApplicationMailer
-
   def message_notification(reciever, sender, chat_room_id)
     @reciever = reciever
     @sender = sender
