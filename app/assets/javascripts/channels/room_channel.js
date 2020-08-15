@@ -4,6 +4,11 @@
 /* global showAdditionally */
 /* global $ */
 
+document.addEventListener('turbolinks:request-start', () => {
+  if(App.room) {
+    App.room.unsubscribe();
+  }
+});
 // turbolinks の読み込みが終わった後にidを取得しないと，エラーが出ます。
 document.addEventListener('turbolinks:load', () => {
 
@@ -18,18 +23,20 @@ document.addEventListener('turbolinks:load', () => {
   if(/rooms/.test(window.location.pathname)) {
     const path = window.location.pathname.split('/');
     const chatRoomId = path[path.length - 1];
-    App.room = App.cable.subscriptions.create({ channel: "RoomChannel", chat_room_id: chatRoomId }, {
-      connected: function() {
-      },
-      
-      disconnected: function() {
+    // if(!App.room) {
+      App.room = App.cable.subscriptions.create({ channel: "RoomChannel", chat_room_id: chatRoomId }, {
+        connected: function() {
+        },
         
-      },
-      
-      received: function(data) {
-        messageContainer.insertAdjacentHTML('beforeend', data['message']);
-      }
-    });
+        disconnected: function() {
+          
+        },
+        
+        received: function(data) {
+          messageContainer.insertAdjacentHTML('beforeend', data['message']);
+        }
+      });
+    // }
     
     const documentElement = document.documentElement;
     // js.erb 内でも使用できるように変数を決定

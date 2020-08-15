@@ -1,33 +1,44 @@
 - provide(:title, @user.name)
-= image_tag @user.avatar.variant(combine_options: { resize: "300^", crop: "300x300+0+0", gravity: :center }).processed
-h1
-  = @user.name
-- if logged_in?
-  - if current_user?(@user)
-    = link_to "Edit profile", edit_user_path(@user), class: "btn btn-info btn-lg"
-  - else
-    = render 'follow_form'
-p
-  | Gender 
-  = @user.gender
-p
-  | Age 
-  = @user.age
-p
-  | Address 
-  = @user.prefecture_name
-p
-  | Nationality 
-  = @user.nationality
-p
-  | BIO 
-  = @user.bio
-p
-  | Hobby 
-  - @user.hobby
-p
-  | Job 
-  = @user.job
-p
-  | Status 
-  = @user.status
+.row
+  .col-md-6.offset-md-3.profile-block
+    .avatar-block
+      = image_tag \
+        @user.avatar.variant(combine_options: { resize: "300^", 
+        crop: "300x300+0+0", gravity: :center }).processed, class: "avatar"
+    .name-block
+      h1.name
+        = @user.name
+      div
+        span.age
+          = @user.age
+        span.gender
+          - if @user.gender == "male"
+            | M
+          - else 
+            | F
+    .nationality
+      = @user.nationality
+      = Country.find_country_by_name(@user.nationality).emoji_flag
+    .prefecture
+      = @user.prefecture_name
+    - if logged_in?
+      - if current_user?(@user)
+        = link_to "Edit profile", edit_user_path(@user), class: "btn btn-info btn-lg"
+      - else
+        = render 'follow_form'
+    h2.bio
+      | Bio
+    .answer-field-bio
+      = simple_format(h @user.bio)
+    h2.hobby
+      | Hobby 
+    .answer-field
+      = @user.hobby
+    h2.job
+      | Job 
+    .answer-field
+      = @user.job
+    h2.status
+      | Status 
+    .answer-field
+      = @user.status

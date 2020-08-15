@@ -1,23 +1,36 @@
 - provide(:title, "Users")
-= paginate @users
-button.btn.btn-primary.btn-lg[type="button" data-toggle="modal" data-target="#exampleModal"]
-  |  Search 
-= render 'search_modal'
-.row
-  - @users.each do |user|
-    .col-md-3
-      .card
-        .card-body
-          = image_tag \ 
-            user.avatar.variant(combine_options: { resize: "200x200^", 
-            crop: "200x200+0+0", gravity: :center }).processed
-          = link_to user.name, user
-          = Country.find_country_by_name(user.nationality).emoji_flag
-          = user.prefecture_name
-          = user.age
-          = user.gender
-          - if logged_in?
-            - if current_user.admin? && !current_user?(user)
-              |  | 
-              = link_to "delete", user, method: :delete, data: { confirm: "You sure?" }
-= paginate @users
+.users-index-block
+  button.btn.btn-primary.btn-lg.search-btn[type="button" data-toggle="modal" data-target="#exampleModal"]
+    |  Search 
+  = render 'search_modal'
+  .top-pagination
+    = paginate @users
+  .users-index
+    .row
+      - @users.each do |user|
+        .col-md-3
+          .card
+            = link_to user, class: "card-body" do
+              = image_tag \ 
+                user.avatar.variant(combine_options: { resize: "200x200^", 
+                crop: "200x200+0+0", gravity: :center }).processed, class: "avatar"
+              br
+              span.name
+                = user.name 
+              span.flag
+                = Country.find_country_by_name(user.nationality).emoji_flag
+              span.age
+                = user.age
+              span.gender
+                - if user.gender == "male"
+                  | M
+                - else
+                  | F
+              br
+              span.prefecture
+                = user.prefecture_name
+            - if logged_in?
+              - if current_user.admin? && !current_user?(user)
+                = link_to "delete", user, method: :delete, class: "delete",
+                                    data: { confirm: "You sure?" }
+  = paginate @users

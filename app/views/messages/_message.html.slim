@@ -1,8 +1,17 @@
-| <div class="message" id="message-
-= message.id
-| "> 
-p
-  = message.user.name
-  | : 
-  = l message.created_at, format: '%-m/%-d(%a) %H:%M'
-= simple_format(h message.content)
+.message.message-right id="#{message.id}" data-session="#{session[:user_id]}"
+  .name-and-text
+    .name
+      = message.user.name
+    .text
+      = simple_format(h message.content)
+  .send-at
+    = l message.created_at, format: '%-m/%-d(%a) %H:%M'
+  javascript:
+    var from_id = #{message.user_id};
+    var current_user_id = $('.message').data('session');
+    if(from_id !== current_user_id){
+      $('#' + #{message.id}).removeClass('message-right');
+      $('#' + #{message.id}).addClass('message-left');
+    }
+
+

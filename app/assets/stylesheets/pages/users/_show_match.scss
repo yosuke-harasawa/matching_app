@@ -1,0 +1,25 @@
+.matchers-block {
+  padding-top: 20px;
+  .matcher-card {
+    .card-body {
+      display: flex;
+      align-items: center;
+      position: relative;
+      .matcher-info {
+        margin-left: 20px;
+      }
+      .n-circle {
+        top: 12px;
+        right: 12px;
+      }
+    }
+    .card-footer {
+      padding: 0;
+      border: none;
+      .btn {
+        width: 100%;
+        border-radius: 0.25rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+li.dropdown
+  a href="#" data-toggle="dropdown"
+    i.header-icon.fas.fa-cog.fa-3x
+  ul.dropdown-menu 
+    li.dropdown-item
+      = link_to "Account", account_user_path(current_user)
+    li.dropdown-item
+      = link_to "Log out", logout_path, method: :delete

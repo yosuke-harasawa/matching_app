@@ -1,24 +1,26 @@
 - provide(:title, "Edit Account")
-h1
-  | Edit Account
 .row
-  .col-md-6.col-md-offset-3
+  .col-md-6.offset-md-3.edit-account-block
+    h1.page-title
+      | Edit Account
     = form_with(model: @user, url: user_path(@user), local: true) do |f|
       = render 'shared/error_messages'
       .form-group
         = f.label :email
-        = f.email_field :email, class: "form-control"
+        = f.email_field :email, class: "form-control text-form"
       .form-group
         = f.label :password
-        = f.password_field :password, class: "form-control"
+        = f.password_field :password, class: "form-control text-form"
       .form-group
         = f.label :password_confirmation
-        = f.password_field :password_confirmation, class: "form-control"
-      .form-group
+        = f.password_field :password_confirmation, class: "form-control text-form"
+      .form-group.notification-form
         = f.label :follow_notification
-        = f.check_box :follow_notification, class: "form-control"
-      .form-group
+        = f.check_box :follow_notification, class: "check-box"
+      .form-group.notification-form
         = f.label :message_notification
-        = f.check_box :message_notification, class: "form-control"
+        = f.check_box :message_notification, class: "check-box"
       = f.submit "Update Account", class: "btn btn-primary btn-lg"
-    = button_to "Delete Account", user_path(current_user), method: :delete, data: { confirm: "You sure?" }, class: "btn btn-danger btn-lg"
+    hr
+    = button_to "Delete Account", user_path(current_user), method: :delete, 
+            data: { confirm: "You sure?" }, class: "btn btn-danger btn-lg"

@@ -20,7 +20,7 @@ class RoomsController < ApplicationController
     chat_room = ChatRoom.find_by(id: params[:id])
     @chat_room_user = chat_room.chat_room_users
                                .where.not(user_id: current_user.id).first.user
-    @messages = Message.includes(:user).where(chat_room: chat_room).order(:created_at).last(100)
+    @messages = Message.includes(:user).where(chat_room: chat_room).order(:created_at).last(50)
     # メッセージ投稿に利用
     @message = current_user.messages.build
 
@@ -31,11 +31,6 @@ class RoomsController < ApplicationController
   def show_additionally
     chat_room = ChatRoom.find_by(id: params[:chat_room_id])
     last_id = params[:oldest_message_id].to_i - 1
-    @messages = Message.includes(:user).where(chat_room: chat_room).order(:created_at).where(id: 1..last_id).last(50)
+    @messages = Message.where(chat_room: chat_room).order(:created_at).where(id: 1..last_id).last(50)
   end
-
-  # def show
-  #   # 投稿一覧表示に利用
-  #   @messages = Message.includes(:user).order(:id)
-  # end
 end

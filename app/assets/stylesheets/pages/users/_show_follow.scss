@@ -1,0 +1,12 @@
+.followers-block {
+  padding-top: 20px;
+  .follower-card {
+    .card-body {
+      display: flex;
+      align-items: center;
+      .follower-info {
+        margin-left: 20px;
+      }
+    }
+  }
+}
