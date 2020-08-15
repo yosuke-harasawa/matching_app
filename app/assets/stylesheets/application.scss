@@ -1,80 +1,56 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "setting/variables";
+@import "setting/base";
+@import "modules/header";
+@import "modules/card";
+@import "modules/avatar";
+@import "modules/btn";
+@import "modules/modal";
+@import "modules/pagination";
+@import "pages/users/index";
+@import "pages/users/new";
+@import "pages/users/show";
+@import "pages/users/edit";
+@import "pages/users/account";
+@import "pages/users/show_follow";
+@import "pages/users/show_match";
+@import "pages/sessions/new";
+@import "pages/rooms/show";
+@import "pages/rooms/footer";
+@import "pages/messages/message";
+@import "pages/password_resets/new";
+@import "pages/password_resets/edit";
 
-
-// mixins, variables, etc
-
-
-// universal
-html {
-  font-size: 62.5%;
-}
-
-body {
-  font-size: 1.2rem;
-  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  margin-top: 67px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-
-// header
-.navbar {
-  border-bottom: 1px solid #e3e3e3;
-  z-index: 100;
-  background-color: white;
-}
-
-header li {
-  display: inline-block;
-  list-style-type: none;
-  padding: 0 15px;
-}
-
-.follower-link {
-  font-size: 3em;
-}
-
-.n-circle {
-  position: absolute;
-  padding-top: 0rem;
-}
-
-
-// debug
-.debug_dump {
-  background-color: #eaeaea;
-  border: 1px solid #e3e3e3;
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-}
-
-// forms
-#error_explanation {
-  color: red;
-}
-
-.field_with_errors .form-control{
-  border-color: red;
+@media (min-width: 1024px) {
+  .navbar {
+    .dropdown-menu {
+      left: 0;
+    }
+  }
+  .top-pagination {
+    display: block;
+  }
+  .follower-card {
+    width: 60%;
+  }
+  .matcher-card {
+    width: 60%;
+  }
+  #message-container {
+  border-right: 1px solid $border-color;
+  border-left: 1px solid $border-color;
+  margin: 0 auto;
+  }
 }
 
 // ユーザー編集ページ
 #avatar_prev {
   // with: 200px;
   // height: 200px;
-  border-radius: 50%;
+  // border-radius: 50%;
   padding: 5px;
-  border: 9px solid lightgray;
   &:hover {
     opacity: 0.9;
     cursor: pointer;
@@ -83,31 +59,4 @@ header li {
 
 #user_avatar {
   display: none;
-}
-
-// メッセージ一覧
-#message-container {
-  max-width: 768px;
-  margin: 0 auto;
-  padding: 1rem 1rem 8rem 1rem;
-}
-
-// メッセージ投稿フォーム
-footer {
-  max-width: 768px;
-  padding: 1rem;
-  margin: 0 auto;
-  background-color: white;
-}
-
-// ボタン無効化時のスタイル
-.btn-primary.disabled {
-  background-color: #6c757d;
-  border-color: #6c757d;
-  cursor: auto;
-}
-
-// ユーザーがフォームサイズを自由に変更できる機能を停止させておく
-#message_content {
-  resize: none;
 }

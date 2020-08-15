@@ -16,16 +16,16 @@ RSpec.describe User, type: :model do
       expect(user).to be_invalid
     end
 
-    context '30 characters' do
+    context '10 characters' do
       it 'is maximum length' do
-        user.name = 'a' * 30
+        user.name = 'a' * 10
         expect(user).to be_valid
       end
     end
 
-    context '31 characters' do
+    context '11 characters' do
       it 'is too long' do
-        user.name = 'a' * 31
+        user.name = 'a' * 11
         expect(user).to be_invalid
       end
     end

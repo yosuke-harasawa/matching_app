@@ -2,7 +2,7 @@
   .modal-dialog[role="document"]
     .modal-content
       .modal-header
-        h5#exampleModalLabel.modal-title
+        h2#exampleModalLabel.modal-title
           | Search
         button.close[type="button" data-dismiss="modal" aria-label="Close"]
           span[aria-hidden="true"]
@@ -11,22 +11,24 @@
         = search_form_for @q do |f|
           .form-group
             = f.label :gender
+            br
             = f.radio_button :gender_eq, '', { checked: true }
-            = label :gender, "unspecified", value: ''
+            = label :gender, "unspecified", value: '', class: "value-label"
             = f.radio_button :gender_eq, :male
-            = f.label :gender, "male", value: :male
+            = f.label :gender, "male", value: :male, class: "value-label"
             = f.radio_button :gender_eq, :female
-            = f.label :gender, "female", value: :female
+            = f.label :gender, "female", value: :female, class: "value-label"
           .form-group
             = f.label :age
-            = f.number_field :age_gteq
-            | or higher 
-            = f.number_field :age_lteq
-            | or lower 
+            .age-range
+              = f.text_field :age_gteq, class: "form-control text-form age-gteq"
+              span
+                | 〜
+              = f.text_field :age_lteq, class: "form-control text-form age-lteq"
           .form-group
             = f.label :prefecture_code, "Area"
-            = f.collection_select :prefecture_code_eq, JpPrefecture::Prefecture.all, :code, :name_e, include_blank: "-----"
+            = f.collection_select :prefecture_code_eq, JpPrefecture::Prefecture.all, :code, :name_e, include_blank: ""
           .form-group
             = f.label :nationality
-            = f.collection_select :nationality_eq, Country.all, :name, :name, include_blank: "-----"
+            = f.collection_select :nationality_eq, Country.all, :name, :name, include_blank: ""
           = f.submit "Search", class: "btn btn-primary btn-lg"

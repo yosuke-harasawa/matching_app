@@ -13,8 +13,8 @@ RSpec.describe 'Signups', type: :system do
     it 'is failed' do
       fill_in 'user name',             with: ''
       fill_in 'age',                   with: 3
-      select                           '-----', from: 'Area'
-      select                           '-----', from: 'Nationality'
+      select                           '', from: 'Area'
+      select                           '', from: 'Nationality'
       fill_in 'email',                 with: 'user@invalid'
       fill_in 'password',              with: 'foo'
       fill_in 'password confirmation', with: 'bar'

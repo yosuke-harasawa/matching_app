@@ -40,8 +40,8 @@ RSpec.describe 'UsersEdit', type: :system do
       visit edit_user_path(user)
       fill_in 'Name',  with: ''
       fill_in 'Age',   with: 3
-      select  '-----', from: 'Area'
-      select  '-----', from: 'Nationality'
+      select  '',      from: 'Area'
+      select  '',      from: 'Nationality'
       fill_in 'Bio',   with: 'a' * 1001
       fill_in 'Hobby', with: 'a' * 100
       fill_in 'Job',   with: 'a' * 31

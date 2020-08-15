@@ -1,0 +1,28 @@
+.card {
+  text-align: center;
+  margin: 0 auto 20px;
+  .card-body {
+    color: $text-color;
+    &:hover {
+      color: $text-color;
+      text-decoration: none;
+    }
+    .name {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+    .age, .gender {
+      font-weight: bold;
+      margin: 0 5px;
+    }
+    .prefecture {
+      font-weight: bold;
+    }
+  }
+  .delete {
+    color: red;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

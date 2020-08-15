@@ -1,0 +1,7 @@
+li
+  = link_to matchers_user_path(current_user) do
+    - if unchecked_message_notifications.any?
+      i.header-icon.far.fa-comments.fa-3x
+      i.n-circle.fas.fa-circle
+    - else
+      i.header-icon.far.fa-comments.fa-3x

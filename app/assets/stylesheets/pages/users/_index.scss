@@ -1,0 +1,21 @@
+.search-btn {
+  width: 150px;
+  margin: 0 0 10px auto;
+}
+.top-pagination {
+  display: none;
+}
+.users-index-block {
+  padding: 10px 0 40px;
+  .users-index {
+    padding: 10px;
+    .card {
+      border: 0;
+      .card-body:hover {
+        .avatar {
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+}

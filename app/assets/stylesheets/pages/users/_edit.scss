@@ -1,0 +1,23 @@
+.edit-profile-block {
+  font-size: 1.6rem;
+  padding: 0 20px;
+  .avatar-form {
+    text-align: center;
+  }
+  .form-group {
+    margin-bottom: 20px;
+    .attr-label {
+      font-weight: bold;
+    }
+    .value-label {
+      margin: 0 15px 0 5px;
+    }
+    .radio-btn {
+      transform: scale(1.2);
+    }
+  }
+  .btn {
+    width: 300px;
+    margin: 40px auto;
+  }
+}

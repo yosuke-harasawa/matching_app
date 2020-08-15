@@ -1,0 +1,54 @@
+.profile-block {
+  font-size: 1.6rem;
+  border: 1px solid $border-color;
+  border-top: none;
+  padding: 0;
+  .avatar-block {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .name-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .name {
+      margin-bottom: 0;
+    }
+    .age {
+      margin: 0 5px 0 15px;
+    }
+  }
+  .nationality {
+    text-align: center;
+  }
+  .prefecture {
+    text-align: center;
+  }
+  .bio,
+  .hobby,
+  .job,
+  .status {
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    padding: 10px 20px;
+    margin-bottom: 0;
+    background-color: #faf9f7;
+  }
+  .answer-field {
+    min-height: 41px;
+    line-height: 41px;
+    text-align: center;
+  }
+  .answer-field-bio, {
+    min-height: 41px;
+    padding: 10px 20px 0;
+    word-wrap: break-word;
+  }
+  .btn {
+    width: 200px;
+    display: block;
+    margin: 10px auto;
+  }
+}

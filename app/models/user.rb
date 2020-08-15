@@ -31,8 +31,21 @@ class User < ApplicationRecord
 
   validates :name,
             presence: true,
-            length: { maximum: 30 }
+            length: { maximum: 10 }
 
+  validates :gender,
+            presence: true
+
+  validates :age,
+            presence: true,
+            length: { is: 2 }
+
+  validates :prefecture_code,
+            presence: true
+
+  validates :nationality,
+            presence: true
+            
   validates :email,
             presence: true,
             length: { maximum: 50 },
@@ -47,27 +60,14 @@ class User < ApplicationRecord
             format: { with: VALID_PASSWORD_REGEX },
             allow_nil: true
 
-  validates :gender,
-            presence: true
-
-  validates :age,
-            presence: true,
-            length: { is: 2 }
-
-  validates :prefecture_code,
-            presence: true
-
-  validates :nationality,
-            presence: true
-
   validates :bio,
             length: { maximum: 1000 }
 
   validates :hobby,
-            length: { maximum: 100 }
+            length: { maximum: 50 }
 
   validates :job,
-            length: { maximum: 30 }
+            length: { maximum: 50 }
 
   include JpPrefecture
   jp_prefecture :prefecture_code

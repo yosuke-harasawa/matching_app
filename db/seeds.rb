@@ -13,7 +13,7 @@ User.create!(
 )
 
 99.times do |n|
-  name            = Faker::Name.name
+  name            = Faker::Name.first_name
   email           = "user-#{n + 1}@example.com"
   password        = 'Password1'
   gender          = 'female'

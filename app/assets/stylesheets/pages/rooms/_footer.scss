@@ -1,0 +1,12 @@
+#footer {
+  max-width: 768px;
+  padding: 1rem;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid $border-color;
+  .btn.disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    cursor: auto;
+  }
+}
