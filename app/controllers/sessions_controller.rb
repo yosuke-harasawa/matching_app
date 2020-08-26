@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       if user.activated?
         log_in(user)
         params[:session][:remember_me] == '1' ? save_info_in_cookies(user) : delete_info_in_cookies(user)
-        redirect_back_or user
+        redirect_back_or root_url
       else
         flash[:warning] = 'Account not activated! Check your email activation link'
         redirect_to root_url

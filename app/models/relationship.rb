@@ -5,6 +5,10 @@ class Relationship < ApplicationRecord
   validates :following_id, presence: true
 
   def self.send_notification_email(user, follower)
-    RelationshipMailer.follower_notification(user, follower).deliver_now
+    if user.matching?(follower)
+      RelationshipMailer.matching_notification(user, follower).deliver_now
+    else
+      RelationshipMailer.follower_notification(user, follower).deliver_now
+    end
   end
 end

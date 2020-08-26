@@ -45,7 +45,7 @@ class User < ApplicationRecord
 
   validates :nationality,
             presence: true
-            
+
   validates :email,
             presence: true,
             length: { maximum: 50 },
@@ -142,6 +142,10 @@ class User < ApplicationRecord
   def matching_users
     User.where(id: passive_relationships.select(:follower_id))
         .where(id: active_relationships.select(:following_id))
+  end
+
+  def matching?(other_user)
+    following?(other_user) && other_user.following?(self)
   end
 
   def template

@@ -38,25 +38,12 @@
   .matcher-card {
     width: 60%;
   }
+  .jumbotron {
+    width: 60%;
+  }
   #message-container {
   border-right: 1px solid $border-color;
   border-left: 1px solid $border-color;
   margin: 0 auto;
   }
-}
-
-// ユーザー編集ページ
-#avatar_prev {
-  // with: 200px;
-  // height: 200px;
-  // border-radius: 50%;
-  padding: 5px;
-  &:hover {
-    opacity: 0.9;
-    cursor: pointer;
-  }
-}
-
-#user_avatar {
-  display: none;
 }

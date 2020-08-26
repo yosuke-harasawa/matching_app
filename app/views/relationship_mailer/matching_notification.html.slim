@@ -1,0 +1,13 @@
+h1
+  | meet
+p
+  | Hi 
+  = @user.name
+  | ,
+p
+  | You matched with 
+  = @follower.name
+  |  !
+p
+  | Let's chat! 
+  = link_to "Your matching", matchers_user_url(@user)

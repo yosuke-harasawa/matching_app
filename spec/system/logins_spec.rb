@@ -31,7 +31,7 @@ RSpec.describe 'Logins', type: :system do
     context 'when inputted info is valid' do
       it 'is successful ' do
         submit_valid_info
-        expect(current_path).to eq user_path(user)
+        expect(current_path).to eq root_path
       end
     end
   end
@@ -39,7 +39,7 @@ RSpec.describe 'Logins', type: :system do
   describe 'Log out' do
     it 'is successful' do
       submit_valid_info
-      expect(current_path).to eq user_path(user)
+      expect(current_path).to eq root_path
       click_link 'Log out'
       expect(current_path).to eq root_path
     end

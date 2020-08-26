@@ -11,9 +11,7 @@
         .col-md-3
           .card
             = link_to user, class: "card-body" do
-              = image_tag \ 
-                user.avatar.variant(combine_options: { resize: "200x200^", 
-                crop: "200x200+0+0", gravity: :center }).processed, class: "avatar"
+              = image_tag user.avatar, class: "avatar"
               br
               span.name
                 = user.name 

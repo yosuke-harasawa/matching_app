@@ -3,6 +3,26 @@
   padding: 0 20px;
   .avatar-form {
     text-align: center;
+    #avatar_prev {
+      max-width: 200px;
+      min-width: 200px;
+      max-height: 200px;
+      min-height: 200px;
+      &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+      }
+    }
+    #user_avatar {
+      display: none;
+    }
+  }
+  .remove-avatar-form {
+    text-align: center;
+    .check-box {
+    margin-right: 10px;
+    transform: scale(1.5);
+    }
   }
   .form-group {
     margin-bottom: 20px;

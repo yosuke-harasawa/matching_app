@@ -5,4 +5,10 @@ class RelationshipMailerPreview < ActionMailer::Preview
     follower = User.second
     RelationshipMailer.follower_notification(user, follower)
   end
+
+  def matching_notification
+    user = User.first
+    follower = User.second
+    RelationshipMailer.matching_notification(user, follower)
+  end
 end

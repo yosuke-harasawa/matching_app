@@ -2,9 +2,7 @@
 .row
   .col-md-6.offset-md-3.profile-block
     .avatar-block
-      = image_tag \
-        @user.avatar.variant(combine_options: { resize: "300^", 
-        crop: "300x300+0+0", gravity: :center }).processed, class: "avatar"
+      = image_tag @user.avatar, class: "avatar"
     .name-block
       h1.name
         = @user.name

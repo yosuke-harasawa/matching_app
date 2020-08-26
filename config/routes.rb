@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   root   'users#index'
-  get    '/signup',   to: 'users#new'
-  post   '/signup',   to: 'users#create'
-  get    '/login',    to: 'sessions#new'
-  post   '/login',    to: 'sessions#create'
-  delete '/logout',   to: 'sessions#destroy'
+  get    '/signup',            to: 'users#new'
+  post   '/signup',            to: 'users#create'
+  get    '/login',             to: 'sessions#new'
+  post   '/login',             to: 'sessions#create'
+  delete '/logout',            to: 'sessions#destroy'
+  patch  '/users/:id/edit',    to: 'users#update'
+  patch  '/users/:id/account', to: 'users#update'
   get    '/show_additionally', to: 'rooms#show_additionally'
 
   resources :users do

@@ -1,23 +1,23 @@
 - provide(:title, @title)
 .followers-block
   - @users.each do |user|
-    .card.follower-card
-      = link_to user, class: "card-body" do
-        .avatar-img
-          = image_tag \
-            @user.avatar.variant(combine_options: { resize: "100^",
-            crop: "100x100+0+0", gravity: :center }).processed, class: "avatar"
-        .follower-info
-          span.name
-            = user.name
-          = Country.find_country_by_name(user.nationality).emoji_flag
-          span.age
-            = user.age
-          span.gender
-            - if user.gender == "male"
-              | M
-            - else
-              | F
-          br
-          span.prefecture
-            = user.prefecture_name
+    - if !@user.matching?(user)
+      .card.follower-card
+        = link_to user, class: "card-body" do
+          .avatar-img
+            = image_tag \
+              user.avatar, class: "avatar"
+          .follower-info
+            span.name
+              = user.name
+            = Country.find_country_by_name(user.nationality).emoji_flag
+            span.age
+              = user.age
+            span.gender
+              - if user.gender == "male"
+                | M
+              - else
+                | F
+            br
+            span.prefecture
+              = user.prefecture_name

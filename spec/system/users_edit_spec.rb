@@ -43,10 +43,10 @@ RSpec.describe 'UsersEdit', type: :system do
       select  '',      from: 'Area'
       select  '',      from: 'Nationality'
       fill_in 'Bio',   with: 'a' * 1001
-      fill_in 'Hobby', with: 'a' * 100
+      fill_in 'Hobby', with: 'a' * 51
       fill_in 'Job',   with: 'a' * 31
       click_button 'Update Profile'
-      expect(current_path).to eq user_path(user)
+      expect(current_path).to eq edit_user_path(user)
       expect(page).to have_selector '#error_explanation'
     end
   end
@@ -61,9 +61,9 @@ RSpec.describe 'UsersEdit', type: :system do
       fill_in 'Age',    with: 28
       select  'Gunma',  from: 'Area'
       select  'Japan',  from: 'Nationality'
-      fill_in 'Bio',    with: 'Hello'
-      fill_in 'Hobby',  with: 'movie'
-      fill_in 'Job',    with: 'engineer'
+      fill_in 'Bio',    with: 'a' * 1000
+      fill_in 'Hobby',  with: 'a' * 50
+      fill_in 'Job',    with: 'a' * 30
       choose            'single'
       click_button 'Update Profile'
       expect(current_path).to eq user_path(user)

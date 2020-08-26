@@ -3,16 +3,16 @@
   .col-md-6.offset-md-3.edit-profile-block
     h1.page-title
       | Edit Profile
-    = form_with(model: @user, url: user_path(@user), local: true) do |f|
+    = form_with(model: @user, url: edit_user_path(@user), local: true) do |f|
       = render 'shared/error_messages'
-      .form-group.avatar-form
-        = f.label :avatar do
-          = image_tag \
-            @user.avatar.variant(combine_options: { resize: "200^",
-            crop: "200x200+0+0", gravity: :center }).processed,
-            class: "avatar", id: "avatar_prev"
-          = f.file_field :avatar
-        / = f.check_box :remove_avatar, class: "form-control"
+      .form-group
+        .avatar-form
+          = f.label :avatar do
+            = image_tag \
+              @user.avatar, class: "avatar", id: "avatar_prev"
+            = f.file_field :avatar
+        .remove-avatar-form
+          = f.check_box :remove_avatar, class: "check-box"
           = f.label :remove_avatar
       .form-group
         = f.label :name, class: "attr-label"
@@ -34,7 +34,7 @@
       .form-group
         = f.label :nationality, class: "attr-label"
         br
-        = f.collection_select :nationality, Country.all, :name, :name, include_blank: ""
+        = f.collection_select :nationality, Country.all.sort_by(&:name), :name, :name, include_blank: ""
       .form-group
         = f.label :bio, class: "attr-label"
         = f.text_area :bio, size: "100x10", class: "form-control textarea-form"

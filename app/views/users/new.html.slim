@@ -20,7 +20,7 @@
         = f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name_e, include_blank: ""
       .form-group
         = f.label :nationality
-        = f.collection_select :nationality, Country.all, :name, :name, include_blank: ""
+        = f.collection_select :nationality, Country.all.sort_by(&:name), :name, :name, include_blank: ""
       .form-group
         = f.email_field :email, class: "form-control text-form", placeholder: "email"
       .form-group

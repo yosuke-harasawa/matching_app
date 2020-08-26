@@ -45,7 +45,7 @@ RSpec.describe 'Sessions', type: :request do
     it 'is expired at fisrt logout' do
       post_login_info
       follow_redirect!
-      expect(request.fullpath).to eq user_path(user)
+      expect(request.fullpath).to eq root_path
       expect(is_logged_in?).to be_truthy
       delete logout_path
       follow_redirect!
