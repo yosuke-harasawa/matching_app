@@ -5,8 +5,6 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
-# Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
 gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -33,14 +31,12 @@ gem 'bcrypt', '3.1.12'
 # Use ActiveStorage variant
 gem 'mini_magick'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
+gem 'faker'
 gem 'kaminari', '1.2.1'
 gem 'image_processing'
 gem 'aws-sdk-s3'
@@ -53,7 +49,6 @@ gem 'slim-rails'
 gem 'html2slim'
 
 group :development, :test do
-  # gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails'
@@ -74,7 +69,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
-  gem 'faker'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rubocop', require: false
@@ -91,7 +85,6 @@ group :test do
 end
 
 group :production do
-  # gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
