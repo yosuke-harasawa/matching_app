@@ -6,7 +6,7 @@
     = form_with(model: @user, url: signup_path, local: true) do |f|
       = render "shared/error_messages"
       .form-group
-        = f.text_field :name, class: "form-control text-form", placeholder: "user name"
+        = f.text_field :name, class: "form-control text-form", placeholder: "user name  * less than equal 10"
       .form-group
         = f.radio_button :gender, :male, class: "radio-btn"
         = f.label :gender, "male", value: :male, class: "value-label"
@@ -24,7 +24,7 @@
       .form-group
         = f.email_field :email, class: "form-control text-form", placeholder: "email"
       .form-group
-        = f.password_field :password, class: "form-control text-form", placeholder: "password"
+        = f.password_field :password, class: "form-control text-form", placeholder: "password  * must include uppercase, lowercase, and number"
       .form-group
         = f.password_field :password_confirmation, class: "form-control text-form", placeholder: "password confirmation"
       = f.submit "Sign up", class: "btn btn-success btn-lg"

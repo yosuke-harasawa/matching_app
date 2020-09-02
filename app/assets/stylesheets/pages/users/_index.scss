@@ -11,6 +11,10 @@
     padding: 10px;
     .card {
       border: 0;
+      .avatar {
+        width: 200px;
+        height: 200px;
+      }
       .card-body:hover {
         .avatar {
           opacity: 0.9;

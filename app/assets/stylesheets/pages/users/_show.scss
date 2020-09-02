@@ -6,6 +6,10 @@
   .avatar-block {
     text-align: center;
     margin: 20px 0;
+    .avatar {
+      width: 300px;
+      height: 300px;
+    }
   }
   .name-block {
     display: flex;

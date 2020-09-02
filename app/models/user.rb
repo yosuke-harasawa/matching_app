@@ -38,7 +38,7 @@ class User < ApplicationRecord
 
   validates :age,
             presence: true,
-            length: { is: 2 }
+            numericality: { only_integer: true, greater_than_or_equal_to: 18, less_than_or_equal_to: 99 }
 
   validates :prefecture_code,
             presence: true
