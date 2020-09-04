@@ -43,9 +43,9 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  # ActionCable.server.config.disable_request_forgery_protection = true
-  # config.action_cable.url = 'ws://54.95.44.173/cable'
-  config.action_cable.allowed_request_origins = [ /http:\/\/ec2-54-95-44-173.ap-northeast-1.compute.amazonaws.com.*/ ]
+  ActionCable.server.config.disable_request_forgery_protection = true
+  # config.action_cable.url = 'ws://ec2-54-95-44-173.ap-northeast-1.compute.amazonaws.com/cable'
+  config.action_cable.allowed_request_origins = [ 'http://ec2-54-95-44-173.ap-northeast-1.compute.amazonaws', /http:\/\/ec2-54-95-44-173.ap-northeast-1.compute.amazonaws.com.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = false
