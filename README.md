@@ -18,10 +18,10 @@
 
 ## 使用技術
 * 公開用プラットフォーム　　ーAWS
-* DB                      　ーMySQL
+* DB                        ーMySQL
 * テンプレートエンジン　　　ーSlim
 * 画像アップロード　　　　　ーS3
-* 本番環境用Webサーバー　 　ーNginx
+* 本番環境用Webサーバー     ーNginx
 * アプリケーションサーバー　ーPuma
 * デプロイツール　　　　　　ーCapistrano
 * テスト　　　　　　　　　　ーRspec
